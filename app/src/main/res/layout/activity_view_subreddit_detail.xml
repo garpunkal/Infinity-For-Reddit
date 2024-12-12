@@ -42,22 +42,22 @@
                         android:id="@+id/icon_gif_image_view_view_subreddit_detail_activity"
                         android:layout_width="72dp"
                         android:layout_height="72dp"
+                        app:layout_constraintBottom_toTopOf="@id/subscriber_count_text_view_view_subreddit_detail_activity"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@id/subscriber_count_text_view_view_subreddit_detail_activity" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/subreddit_name_text_view_view_subreddit_detail_activity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:paddingTop="8dp"
                         android:fontFamily="?attr/font_family"
+                        android:paddingTop="8dp"
                         android:textSize="?attr/font_18"
-                        app:layout_constraintVertical_chainStyle="packed"
+                        app:layout_constraintBottom_toTopOf="@id/subscribe_subreddit_chip_view_subreddit_detail_activity"
                         app:layout_constraintStart_toEndOf="@id/icon_gif_image_view_view_subreddit_detail_activity"
                         app:layout_constraintTop_toTopOf="@id/icon_gif_image_view_view_subreddit_detail_activity"
-                        app:layout_constraintBottom_toTopOf="@id/subscribe_subreddit_chip_view_subreddit_detail_activity" />
+                        app:layout_constraintVertical_chainStyle="packed" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/subscribe_subreddit_chip_view_subreddit_detail_activity"
@@ -65,9 +65,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         app:chipStrokeColor="#00000000"
+                        app:layout_constraintBottom_toBottomOf="@id/icon_gif_image_view_view_subreddit_detail_activity"
                         app:layout_constraintStart_toEndOf="@id/icon_gif_image_view_view_subreddit_detail_activity"
-                        app:layout_constraintTop_toBottomOf="@id/subreddit_name_text_view_view_subreddit_detail_activity"
-                        app:layout_constraintBottom_toBottomOf="@id/icon_gif_image_view_view_subreddit_detail_activity" />
+                        app:layout_constraintTop_toBottomOf="@id/subreddit_name_text_view_view_subreddit_detail_activity" />
 
                     <TextView
                         android:id="@+id/subscriber_count_text_view_view_subreddit_detail_activity"
@@ -77,9 +77,9 @@
                         android:fontFamily="?attr/font_family"
                         android:textSize="?attr/font_default"
                         app:layout_constraintEnd_toStartOf="@id/barrier"
+                        app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/barrier5"
-                        app:layout_constraintHorizontal_bias="0" />
+                        app:layout_constraintTop_toBottomOf="@id/barrier5" />
 
                     <TextView
                         android:id="@+id/online_subscriber_count_text_view_view_subreddit_detail_activity"
@@ -120,10 +120,10 @@
                         android:fontFamily="?attr/font_family"
                         android:textSize="?attr/font_default"
                         android:visibility="gone"
-                        app:layout_constraintTop_toBottomOf="@id/barrier6"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/barrier6"
                         tools:visibility="visible" />
 
                     <androidx.constraintlayout.widget.Barrier

@@ -13,6 +13,7 @@ import java.util.concurrent.Executor;
 import ml.docilealligator.infinityforreddit.RedditDataRoomDatabase;
 import ml.docilealligator.infinityforreddit.account.Account;
 import ml.docilealligator.infinityforreddit.account.AccountDao;
+import ml.docilealligator.infinityforreddit.events.ChangeFixedHeightPreviewInCardEvent;
 import ml.docilealligator.infinityforreddit.events.ChangePostLayoutEvent;
 import ml.docilealligator.infinityforreddit.utils.SharedPreferencesUtils;
 
@@ -33,11 +34,13 @@ public class AccountManagement {
             currentAccountSharedPreferences.edit().remove(SharedPreferencesUtils.SUBSCRIBED_THINGS_SYNC_TIME).apply();
             handler.post(() -> switchAccountListener.switched(account));
 
-            // hack for default post layout for user
+            // HACK: GW
+            // Default post layout for user
             if (newAccountName.startsWith("dextergood")) {
                 EventBus.getDefault().post(new ChangePostLayoutEvent(POST_LAYOUT_GALLERY));
+                EventBus.getDefault().post(new ChangeFixedHeightPreviewInCardEvent(false));
             }
-            //\endhack
+            //\ HACK
         });
 
     }

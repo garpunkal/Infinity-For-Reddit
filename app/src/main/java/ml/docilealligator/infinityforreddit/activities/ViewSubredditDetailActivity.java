@@ -2,6 +2,8 @@ package ml.docilealligator.infinityforreddit.activities;
 
 import static android.graphics.BitmapFactory.decodeResource;
 
+import static ml.docilealligator.infinityforreddit.utils.SharedPreferencesUtils.POST_LAYOUT_GALLERY;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
@@ -48,7 +50,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.android.material.textfield.TextInputEditText;
 
+import ml.docilealligator.infinityforreddit.events.ChangePostLayoutEvent;
 import ml.docilealligator.infinityforreddit.readpost.ReadPostsUtils;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
@@ -302,9 +306,17 @@ public class ViewSubredditDetailActivity extends BaseActivity implements SortTyp
         }
 
         lockBottomAppBar = mSharedPreferences.getBoolean(SharedPreferencesUtils.LOCK_BOTTOM_APP_BAR, false);
-        boolean hideSubredditDescription = mSharedPreferences.getBoolean(SharedPreferencesUtils.HIDE_SUBREDDIT_DESCRIPTION, false);
+        var hideSubredditDescription = mSharedPreferences.getBoolean(SharedPreferencesUtils.HIDE_SUBREDDIT_DESCRIPTION, false);
 
         subredditName = getIntent().getStringExtra(EXTRA_SUBREDDIT_NAME_KEY);
+
+        // HACK: GW
+        if (subredditName != null && subredditName.equalsIgnoreCase("friends")) {
+            hideSubredditDescription = true;
+            EventBus.getDefault().post(new ChangePostLayoutEvent(POST_LAYOUT_GALLERY));
+            binding.toolbarConstraintLayoutViewSubredditDetailActivity.setVisibility(View.GONE);
+        }
+        // \ HACK
 
         fragmentManager = getSupportFragmentManager();
 
@@ -326,7 +338,11 @@ public class ViewSubredditDetailActivity extends BaseActivity implements SortTyp
 
         checkNewAccountAndBindView();
 
-        fetchSubredditData();
+        // HACK: GW
+        if (!subredditName.equalsIgnoreCase("friends")) {
+            fetchSubredditData();
+        }
+        // \ HACK
 
         String title = "r/" + subredditName;
         binding.subredditNameTextViewViewSubredditDetailActivity.setText(title);
@@ -373,6 +389,9 @@ public class ViewSubredditDetailActivity extends BaseActivity implements SortTyp
         mSubredditViewModel = new ViewModelProvider(this,
                 new SubredditViewModel.Factory(mRedditDataRoomDatabase, subredditName))
                 .get(SubredditViewModel.class);
+
+        final boolean hideDesc = hideSubredditDescription;
+
         mSubredditViewModel.getSubredditLiveData().observe(this, subredditData -> {
             if (subredditData != null) {
                 isNsfwSubreddit = subredditData.isNSFW();
@@ -428,18 +447,23 @@ public class ViewSubredditDetailActivity extends BaseActivity implements SortTyp
                 if (!title.equals(subredditFullName)) {
                     getSupportActionBar().setTitle(subredditFullName);
                 }
+
                 binding.subredditNameTextViewViewSubredditDetailActivity.setText(subredditFullName);
+
+
                 String nSubscribers = getString(R.string.subscribers_number_detail, subredditData.getNSubscribers());
                 binding.subscriberCountTextViewViewSubredditDetailActivity.setText(nSubscribers);
                 binding.creationTimeTextViewViewSubredditDetailActivity.setText(new SimpleDateFormat("MMM d, yyyy",
                         locale).format(subredditData.getCreatedUTC()));
                 description = subredditData.getDescription();
-                if (hideSubredditDescription || description.equals("")) {
+
+                if (hideDesc || description.equals("")) {
                     binding.descriptionTextViewViewSubredditDetailActivity.setVisibility(View.GONE);
                 } else {
                     binding.descriptionTextViewViewSubredditDetailActivity.setVisibility(View.VISIBLE);
                     markwon.setMarkdown(binding.descriptionTextViewViewSubredditDetailActivity, description);
                 }
+
 
                 if (subredditData.isNSFW()) {
                     if (nsfwWarningBuilder == null
@@ -1086,15 +1110,21 @@ public class ViewSubredditDetailActivity extends BaseActivity implements SortTyp
         });
         binding.viewPagerViewSubredditDetailActivity.setAdapter(sectionsPagerAdapter);
         binding.viewPagerViewSubredditDetailActivity.setUserInputEnabled(!mSharedPreferences.getBoolean(SharedPreferencesUtils.DISABLE_SWIPING_BETWEEN_TABS, false));
-        new TabLayoutMediator(binding.tabLayoutViewSubredditDetailActivity, binding.viewPagerViewSubredditDetailActivity, (tab, position) -> {
-            switch (position) {
-                case 0:
-                    tab.setText(R.string.posts);
-                    break;
-                case 1:
-                    tab.setText(R.string.about);
-            }
-        }).attach();
+
+        // HACK: GW
+        if (!subredditName.equalsIgnoreCase("friends")) {
+            new TabLayoutMediator(binding.tabLayoutViewSubredditDetailActivity, binding.viewPagerViewSubredditDetailActivity, (tab, position) -> {
+                switch (position) {
+                    case 0:
+                        tab.setText(R.string.posts);
+                        break;
+                    case 1:
+                        tab.setText(R.string.about);
+                }
+            }).attach();
+        }
+        // \ HACK
+
         fixViewPager2Sensitivity(binding.viewPagerViewSubredditDetailActivity);
 
         boolean viewSidebar = getIntent().getBooleanExtra(EXTRA_VIEW_SIDEBAR, false);
