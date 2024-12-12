@@ -127,11 +127,6 @@ public class SubscribedSubredditsRecyclerViewAdapter extends RecyclerView.Adapte
 
     public void setSubscribedSubreddits(List<SubscribedSubredditData> subscribedSubreddits) {
         this.subscribedSubreddits = (ArrayList<SubscribedSubredditData>) subscribedSubreddits;
-        // HACK: GW
-        // add friends subreddit
-        this.subscribedSubreddits.add(0, new SubscribedSubredditData("friends", "Friends", "", "", false));
-        // \ HACK
-
         notifyDataSetChanged();
     }
 

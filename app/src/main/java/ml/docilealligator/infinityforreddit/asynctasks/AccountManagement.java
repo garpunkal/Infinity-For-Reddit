@@ -28,17 +28,6 @@ public class AccountManagement {
             currentAccountSharedPreferences.edit().putString(SharedPreferencesUtils.ACCESS_TOKEN, account.getAccessToken()).putString(SharedPreferencesUtils.ACCOUNT_NAME, account.getAccountName()).putString(SharedPreferencesUtils.ACCOUNT_IMAGE_URL, account.getProfileImageUrl()).apply();
             currentAccountSharedPreferences.edit().remove(SharedPreferencesUtils.SUBSCRIBED_THINGS_SYNC_TIME).apply();
             handler.post(() -> switchAccountListener.switched(account));
-
-            // HACK: GW
-            // Default post layout for user
-            if (newAccountName.startsWith("dextergood")) {
-                EventBus.getDefault().post(new ChangeFixedHeightPreviewInCardEvent(false));
-                EventBus.getDefault().post(new ChangePostLayoutEvent(POST_LAYOUT_GALLERY));
-            } else if (newAccountName.startsWith("garpunkal")) {
-                EventBus.getDefault().post(new ChangeFixedHeightPreviewInCardEvent(true));
-                EventBus.getDefault().post(new ChangePostLayoutEvent(POST_LAYOUT_CARD));
-            }
-            //\ HACK
         });
 
     }

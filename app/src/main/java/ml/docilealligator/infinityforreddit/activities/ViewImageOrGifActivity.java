@@ -182,15 +182,15 @@ public class ViewImageOrGifActivity extends AppCompatActivity implements SetAsWa
                 isDownloading = true;
                 requestPermissionAndDownload();
             });
-            binding.shareImageViewViewImageOrGifActivity.setOnClickListener(view -> {
-                if (isGif)
-                    shareGif();
-                else
-                    shareImage();
-            });
-            binding.wallpaperImageViewViewImageOrGifActivity.setOnClickListener(view -> {
-                setWallpaper();
-            });
+//            binding.shareImageViewViewImageOrGifActivity.setOnClickListener(view -> {
+//                if (isGif)
+//                    shareGif();
+//                else
+//                    shareImage();
+//            });
+//            binding.wallpaperImageViewViewImageOrGifActivity.setOnClickListener(view -> {
+//                setWallpaper();
+//            });
         } else {
             ActionBar actionBar = getSupportActionBar();
             Drawable upArrow = getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp);
@@ -304,9 +304,7 @@ public class ViewImageOrGifActivity extends AppCompatActivity implements SetAsWa
         for (int i = 0; i < menu.size(); i++) {
             Utils.setTitleWithCustomFontToMenuItem(typeface, menu.getItem(i), null);
         }
-        if (!isGif) {
-            menu.findItem(R.id.action_set_wallpaper_view_image_or_gif_activity).setVisible(true);
-        }
+
         return true;
     }
 
@@ -322,15 +320,6 @@ public class ViewImageOrGifActivity extends AppCompatActivity implements SetAsWa
             }
             isDownloading = true;
             requestPermissionAndDownload();
-            return true;
-        } else if (itemId == R.id.action_share_view_image_or_gif_activity) {
-            if (isGif)
-                shareGif();
-            else
-                shareImage();
-            return true;
-        } else if (itemId == R.id.action_set_wallpaper_view_image_or_gif_activity) {
-            setWallpaper();
             return true;
         }
 

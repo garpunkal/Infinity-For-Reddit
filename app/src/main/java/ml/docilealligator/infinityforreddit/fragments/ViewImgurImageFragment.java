@@ -132,12 +132,12 @@ public class ViewImgurImageFragment extends Fragment {
                 isDownloading = true;
                 requestPermissionAndDownload();
             });
-            binding.shareImageViewViewImgurImageFragment.setOnClickListener(view -> {
-                shareImage();
-            });
-            binding.wallpaperImageViewViewImgurImageFragment.setOnClickListener(view -> {
-                setWallpaper();
-            });
+//            binding.shareImageViewViewImgurImageFragment.setOnClickListener(view -> {
+//                shareImage();
+//            });
+//            binding.wallpaperImageViewViewImgurImageFragment.setOnClickListener(view -> {
+//                setWallpaper();
+//            });
         }
 
         return binding.getRoot();
@@ -189,12 +189,6 @@ public class ViewImgurImageFragment extends Fragment {
             }
             isDownloading = true;
             requestPermissionAndDownload();
-            return true;
-        } else if (itemId == R.id.action_share_view_imgur_image_fragment) {
-            shareImage();
-            return true;
-        } else if (itemId == R.id.action_set_wallpaper_view_imgur_image_fragment) {
-            setWallpaper();
             return true;
         }
 

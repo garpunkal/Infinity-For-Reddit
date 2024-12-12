@@ -253,11 +253,9 @@ public class SidebarFragment extends Fragment {
                     @Override
                     public void onFetchSubredditDataFail(boolean isQuarantined) {
                         binding.swipeRefreshLayoutSidebarFragment.setRefreshing(false);
-                        // HACK: GW
                         if (!subredditName.equalsIgnoreCase("friends")) {
                             Toast.makeText(activity, R.string.cannot_fetch_sidebar, Toast.LENGTH_SHORT).show();
                         }
-                        // \ HACK
                     }
                 });
     }

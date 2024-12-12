@@ -120,22 +120,6 @@
                     android:padding="16dp"
                     android:src="@drawable/ic_file_download_toolbar_white_24dp" />
 
-                <ImageView
-                    android:id="@+id/share_image_view_view_reddit_gallery_image_or_gif_fragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="16dp"
-                    android:src="@drawable/ic_share_toolbar_white_24dp" />
-
-                <ImageView
-                    android:id="@+id/wallpaper_image_view_view_reddit_gallery_image_or_gif_fragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="16dp"
-                    android:src="@drawable/ic_wallpaper_24dp" />
             </LinearLayout>
 
         </LinearLayout>

@@ -231,16 +231,16 @@ public class ViewRedditGalleryImageOrGifFragment extends Fragment {
                 isDownloading = true;
                 requestPermissionAndDownload();
             });
-            binding.shareImageViewViewRedditGalleryImageOrGifFragment.setOnClickListener(view -> {
-                if (media.mediaType == Post.Gallery.TYPE_GIF) {
-                    shareGif();
-                } else {
-                    shareImage();
-                }
-            });
-            binding.wallpaperImageViewViewRedditGalleryImageOrGifFragment.setOnClickListener(view -> {
-                setWallpaper();
-            });
+//            binding.shareImageViewViewRedditGalleryImageOrGifFragment.setOnClickListener(view -> {
+//                if (media.mediaType == Post.Gallery.TYPE_GIF) {
+//                    shareGif();
+//                } else {
+//                    shareImage();
+//                }
+//            });
+//            binding.wallpaperImageViewViewRedditGalleryImageOrGifFragment.setOnClickListener(view -> {
+//                setWallpaper();
+//            });
         }
 
         if (captionTextOrUrlIsNotEmpty) {
@@ -337,17 +337,6 @@ public class ViewRedditGalleryImageOrGifFragment extends Fragment {
             }
             isDownloading = true;
             requestPermissionAndDownload();
-            return true;
-        } else if (itemId == R.id.action_share_view_reddit_gallery_image_or_gif_fragment) {
-            if (media.mediaType == Post.Gallery.TYPE_GIF) {
-                shareGif();
-            } else {
-                shareImage();
-            }
-            return true;
-        } else if (itemId == R.id.action_set_wallpaper_view_reddit_gallery_image_or_gif_fragment) {
-            //setWallpaper();
-            Toast.makeText(activity, Integer.toString(activity.getWindow().getDecorView().getSystemUiVisibility()), Toast.LENGTH_SHORT).show();
             return true;
         }
 

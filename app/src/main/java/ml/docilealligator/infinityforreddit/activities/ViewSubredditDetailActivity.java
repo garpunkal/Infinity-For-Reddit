@@ -310,13 +310,10 @@ public class ViewSubredditDetailActivity extends BaseActivity implements SortTyp
 
         subredditName = getIntent().getStringExtra(EXTRA_SUBREDDIT_NAME_KEY);
 
-        // HACK: GW
         if (subredditName != null && subredditName.equalsIgnoreCase("friends")) {
             hideSubredditDescription = true;
-            EventBus.getDefault().post(new ChangePostLayoutEvent(POST_LAYOUT_GALLERY));
             binding.toolbarConstraintLayoutViewSubredditDetailActivity.setVisibility(View.GONE);
         }
-        // \ HACK
 
         fragmentManager = getSupportFragmentManager();
 
@@ -338,11 +335,9 @@ public class ViewSubredditDetailActivity extends BaseActivity implements SortTyp
 
         checkNewAccountAndBindView();
 
-        // HACK: GW
         if (!subredditName.equalsIgnoreCase("friends")) {
             fetchSubredditData();
         }
-        // \ HACK
 
         String title = "r/" + subredditName;
         binding.subredditNameTextViewViewSubredditDetailActivity.setText(title);
@@ -1111,7 +1106,6 @@ public class ViewSubredditDetailActivity extends BaseActivity implements SortTyp
         binding.viewPagerViewSubredditDetailActivity.setAdapter(sectionsPagerAdapter);
         binding.viewPagerViewSubredditDetailActivity.setUserInputEnabled(!mSharedPreferences.getBoolean(SharedPreferencesUtils.DISABLE_SWIPING_BETWEEN_TABS, false));
 
-        // HACK: GW
         if (!subredditName.equalsIgnoreCase("friends")) {
             new TabLayoutMediator(binding.tabLayoutViewSubredditDetailActivity, binding.viewPagerViewSubredditDetailActivity, (tab, position) -> {
                 switch (position) {
@@ -1123,7 +1117,6 @@ public class ViewSubredditDetailActivity extends BaseActivity implements SortTyp
                 }
             }).attach();
         }
-        // \ HACK
 
         fixViewPager2Sensitivity(binding.viewPagerViewSubredditDetailActivity);
 

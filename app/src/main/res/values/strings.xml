@@ -141,6 +141,7 @@
     <string name="subscriptions">Subscriptions</string>
     <string name="multi_reddit">Multireddit</string>
     <string name="history">History</string>
+    <string name="friends">Friends</string>
     <string name="inbox">Inbox</string>
     <string name="inbox_with_count">Inbox (%1$,d)</string>
     <string name="upvoted">Upvoted</string>
