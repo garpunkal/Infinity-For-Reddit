@@ -32,11 +32,11 @@ public class AccountManagement {
             // HACK: GW
             // Default post layout for user
             if (newAccountName.startsWith("dextergood")) {
-                EventBus.getDefault().post(new ChangePostLayoutEvent(POST_LAYOUT_GALLERY));
                 EventBus.getDefault().post(new ChangeFixedHeightPreviewInCardEvent(false));
+                EventBus.getDefault().post(new ChangePostLayoutEvent(POST_LAYOUT_GALLERY));
             } else if (newAccountName.startsWith("garpunkal")) {
-                EventBus.getDefault().post(new ChangePostLayoutEvent(POST_LAYOUT_CARD));
                 EventBus.getDefault().post(new ChangeFixedHeightPreviewInCardEvent(true));
+                EventBus.getDefault().post(new ChangePostLayoutEvent(POST_LAYOUT_CARD));
             }
             //\ HACK
         });
