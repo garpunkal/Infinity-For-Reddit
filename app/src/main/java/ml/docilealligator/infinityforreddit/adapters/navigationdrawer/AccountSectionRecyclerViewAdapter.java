@@ -21,7 +21,7 @@ public class AccountSectionRecyclerViewAdapter extends RecyclerView.Adapter<Recy
 
     private static final int VIEW_TYPE_MENU_GROUP_TITLE = 1;
     private static final int VIEW_TYPE_MENU_ITEM = 2;
-    private static final int ACCOUNT_SECTION_ITEMS = 6;
+    private static final int ACCOUNT_SECTION_ITEMS = 5;
     private static final int ANONYMOUS_ACCOUNT_SECTION_ITEMS = 3;
 
     private final BaseActivity baseActivity;
@@ -114,10 +114,7 @@ public class AccountSectionRecyclerViewAdapter extends RecyclerView.Adapter<Recy
                             baseActivity.startActivity(intent);
                         });
                         break;
-                    case 5:
-                        stringId = R.string.friends;
-                        drawableId = R.drawable.ic_gesture_day_night_24dp;
-                        break;
+
                     default:
                         stringId = R.string.history;
                         drawableId = R.drawable.ic_history_day_night_24dp;

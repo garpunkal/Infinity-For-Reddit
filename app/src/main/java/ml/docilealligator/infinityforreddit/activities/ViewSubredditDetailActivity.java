@@ -310,11 +310,6 @@ public class ViewSubredditDetailActivity extends BaseActivity implements SortTyp
 
         subredditName = getIntent().getStringExtra(EXTRA_SUBREDDIT_NAME_KEY);
 
-        if (subredditName != null && subredditName.equalsIgnoreCase("friends")) {
-            hideSubredditDescription = true;
-            binding.toolbarConstraintLayoutViewSubredditDetailActivity.setVisibility(View.GONE);
-        }
-
         fragmentManager = getSupportFragmentManager();
 
         if (savedInstanceState == null) {
@@ -335,9 +330,8 @@ public class ViewSubredditDetailActivity extends BaseActivity implements SortTyp
 
         checkNewAccountAndBindView();
 
-        if (!subredditName.equalsIgnoreCase("friends")) {
-            fetchSubredditData();
-        }
+        fetchSubredditData();
+
 
         String title = "r/" + subredditName;
         binding.subredditNameTextViewViewSubredditDetailActivity.setText(title);
@@ -1106,17 +1100,15 @@ public class ViewSubredditDetailActivity extends BaseActivity implements SortTyp
         binding.viewPagerViewSubredditDetailActivity.setAdapter(sectionsPagerAdapter);
         binding.viewPagerViewSubredditDetailActivity.setUserInputEnabled(!mSharedPreferences.getBoolean(SharedPreferencesUtils.DISABLE_SWIPING_BETWEEN_TABS, false));
 
-        if (!subredditName.equalsIgnoreCase("friends")) {
-            new TabLayoutMediator(binding.tabLayoutViewSubredditDetailActivity, binding.viewPagerViewSubredditDetailActivity, (tab, position) -> {
-                switch (position) {
-                    case 0:
-                        tab.setText(R.string.posts);
-                        break;
-                    case 1:
-                        tab.setText(R.string.about);
-                }
-            }).attach();
-        }
+        new TabLayoutMediator(binding.tabLayoutViewSubredditDetailActivity, binding.viewPagerViewSubredditDetailActivity, (tab, position) -> {
+            switch (position) {
+                case 0:
+                    tab.setText(R.string.posts);
+                    break;
+                case 1:
+                    tab.setText(R.string.about);
+            }
+        }).attach();
 
         fixViewPager2Sensitivity(binding.viewPagerViewSubredditDetailActivity);
 

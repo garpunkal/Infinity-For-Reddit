@@ -101,6 +101,7 @@
     <string name="action_reset_fab_position">Reset FAB position</string>
     <string name="action_download_all_gallery_media">Download All Gallery Media</string>
     <string name="action_download_all_imgur_album_media">Download All Imgur Album Media</string>
+    <string name="action_profile">Profile</string>
 
     <string name="parse_json_response_error">Error occurred when parsing the JSON response</string>
     <string name="retrieve_token_error">Error Retrieving the token</string>
@@ -141,7 +142,6 @@
     <string name="subscriptions">Subscriptions</string>
     <string name="multi_reddit">Multireddit</string>
     <string name="history">History</string>
-    <string name="friends">Friends</string>
     <string name="inbox">Inbox</string>
     <string name="inbox_with_count">Inbox (%1$,d)</string>
     <string name="upvoted">Upvoted</string>
@@ -998,7 +998,7 @@
     <string name="delete_all_legacy_settings_success">Delete all legacy settings successfully</string>
     <string name="reset_all_settings_success">Reset all settings successfully</string>
 
-    <string name="username_preview">u/garpunkal</string>
+    <string name="username_preview">u/garpunkal_</string>
     <string name="subreddit_preview">r/Infinity_For_Reddit</string>
     <string name="primary_text_preview">Primary Text</string>
     <string name="secondary_text_preview">Secondary Text</string>
